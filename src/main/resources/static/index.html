@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<title>Insert title here</title>
+<style type="text/css">
+
+html{
+margin-left: 10%;
+margin-right: 10%
+}
+h1 {
+	text-align: center;
+	color: #FF4500;
+}
+body{
+background-color: black
+}
+input{
+background-color: white
+}
+label{
+font-family: sans-serif;
+color: #FF4500;
+}
+</style>
+
+</head>
+<body>
+	<h1>Condomínio José Rollemberg Leite</h1>
+	<form action=""id ="formCadastro">
+		<div class="row">
+			<div class="col">
+				<label>ID</label> 
+				<input type="text" class="form-control" id="id"
+					aria-label="ID" readonly="readonly">
+			</div>
+			<div class="col">
+				<label>Bloco</label> 
+				<input type="text" class="form-control"
+					id="bloco" placeholder="Digite o bloco do morador"
+					aria-label=" Bloco">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<label>Apartamento</label> 
+				<input type="text" class="form-control"
+					id="apartamento" placeholder="Digite o apartamento do morador"
+					aria-label="Apartamento">
+			</div>
+			<div class="col">
+				<label>Garagem</label>
+				 <input type="text" class="form-control"
+					id="garagem" placeholder="Digite o número da garagem"
+					aria-label="Garagem">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<label>Nome</label>
+				 <input type="text" class="form-control"
+					id="nome" placeholder="Responsável pelo apartamento"
+					aria-label="Nome">
+			</div>
+			<div class="col">
+				<label>Telefone</label> 
+				<input type="text" class="form-control"
+					id="telefone" placeholder="Digite o telefone" aria-label="Telefone">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<label>Água</label> 
+				<input type="number" class="form-control"
+					id="agua" placeholder="Digite o valor da água" aria-label="Água">
+			</div>
+			<div class="col">
+				<label>Energia</label> 
+				<input type="number" class="form-control"
+					id="energia" placeholder="Digite o valor da energia"
+					aria-label="Energia">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<label>Condomínio</label>
+				 <input type="number" class="form-control"
+					id="valorCond" placeholder="Digite o valor do condomínio"
+					aria-label="Condomínio">
+			</div>
+			<div class="col">
+				<label>Vencimento do condomínio</label> 
+				<input type="date"
+					class="form-control" id="dataVenc"
+					placeholder="Digite a data de vencimento"
+					aria-label="Data de vencimento">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<label>Pagamento do condomínio</label>
+				 <input type="date"
+					class="form-control" id="dataPag"
+					placeholder="Digite a data de pagamento"
+					aria-label="data de pagamento">
+			</div>
+			<div class="col">
+				<label>Status</label> 
+				<input type="text" class="form-control"
+					id="status" placeholder="Digite o status do condomínio"
+					aria-label="Status">
+			</div>
+		</div>
+		<div class="col">
+			<label>Anotacão</label>
+			 <input type="text" class="form-control"
+				id="anotacao" placeholder="Anotações" aria-label="Status">
+		  </div>
+		</div>
+		<br>
+		
+			
+	</form>
+     <button type="button" class="btn btn-success"onclick="salvarMorador();">Cadastrar</button>
+	 <button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#modalPesquisarMorador">Pesquisar</button>	
+	 <button type="button" class="btn btn-secondary" onclick="document.getElementById('formCadastro').reset();">Limpar</button>
+	 <button type="button" class="btn btn-warning" onclick="deletarInicio();">Excluir</button>
+ <div class="modal fade" id="modalPesquisarMorador" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Pesquisar Morador</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="nameBusca" class="col-form-label">Nome:</label>
+            <input type="text" class="form-control" id="nameBusca">
+          </div>
+          
+        </form>
+	<div style="height: 300px; overflow: scroll">
+		<table class="table table-dark table-striped" id="tabelaResultados">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Telefone</th>
+					<th scope="col">Apartamento</th>
+					<th scope="col">Mais</th>
+					<th scope="col">Excluir</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	  </div>
+	</div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-light"
+			data-bs-dismiss="modal">Fechar</button>
+		<button type="button" class="btn btn-primary"
+			onclick="pesquisarMorador()">Buscar</button>
+		
+	  </div>
+	  </div>
+	</div>
+  </div>
+
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		function salvarMorador() {
+			var id = $("#id").val();
+			var bloco = $("#bloco").val();
+			var apartamento = $("#apartamento").val();
+			var garagem = $("#garagem").val();
+			var nome = $("#nome").val();
+			var telefone = $("#telefone").val();
+			var agua = $("#agua").val();
+			var energia = $("#energia").val();
+			var valorCond = $("#valorCond").val();
+			var dataVenc = $("#dataVenc").val();
+			var dataPag = $("#dataPag").val();
+			var status = $("#status").val();
+			var anotacao = $("#anotacao").val();
+
+			if (bloco == null || bloco != null && bloco.trim() == '') {
+
+				alert('informe o bloco')
+				return;
+			}
+
+			$("bloco").focus();
+			if (apartamento == null || apartamento != null
+					&& apartamento.trim() == '') {
+
+				alert('informe o apartamento')
+				return;
+			}
+			$("#apartamento").focus();
+
+			if (nome == null || nome != null && nome.trim() == '') {
+
+				alert('informe o nome do morador')
+				return;
+			}
+			$("#nome").focus();
+
+			if (telefone == null || telefone != null && telefone.trim() == '') {
+
+				alert('informe o telefone do morador')
+				return;
+			}
+
+			$("#telefone").focus();
+
+			if (valorCond == null || valorCond != null
+					&& valorCond.trim() == '') {
+
+				alert('informe o valor do condominio')
+				return;
+			}
+
+			$("#condominio").focus();
+
+			if (dataVenc == null || dataVenc != null && dataVenc.trim() == '') {
+
+				alert('informe o vencimento do condominio')
+				return;
+			}
+
+			$("#vencimento").focus()
+
+			if (status == null || status != null && status.trim() == '') {
+
+				alert('informe o status do condominio')
+				return;
+			}
+
+			$("#status").focus()
+
+			$.ajax({
+				method : "POST",
+				url : "cadastrar",
+				data : JSON.stringify({
+					id : id,
+					bloco : bloco,
+					apartamento : apartamento,
+					garagem : garagem,
+					nome : nome,
+					telefone : telefone,
+					agua : Number(agua),
+					energia : Number(energia),
+					valorCond : Number(valorCond),
+					dataVenc : dataVenc,
+					dataPag : dataPag,
+					status : status,
+					anotacao : anotacao
+				}),
+				contentType : "application/json; charset = utf-8",
+				success : function(response) {
+					$("#id").val(response.id);
+					alert("Dados gravados com sucesso!")
+				}
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Erro ao salvar dados: " + xhr.responseText);
+			});
+		}
+		
+		function pesquisarMorador(){
+			  
+			  var nome = $('#nameBusca').val();		  
+			  if(nome != null && nome.trim() != '') {
+				  
+				 $.ajax({
+				  method:"GET",
+				  url:"buscarPorNome",
+				  data: "name=" + nome,
+				  success:function(response){
+					$('#tabelaResultados > tbody > tr').remove();  
+					for(var i = 0; i < response.length; i++){
+					$('#tabelaResultados > tbody').append('<tr id="'+response[i].id+'"><td>'+response[i].id+'</td><td>'+response[i].nome+'</td><td>'+response[i].telefone+'</td><td>'+response[i].apartamento+'</td><td><button type="button" class="btn btn-info" onclick="verEditar('+response[i].id+')">Mais</button></td><td><button type="button" class="btn btn-danger" onclick="excluirMorador('+response[i].id+')">Excluir</button></td></tr>')  
+					} 
+				  }
+			  }).fail(function(xhr,status,errorThrown){
+				  alert("Erro ao buscar cliente: " + xhr.responseText);
+			  });  
+				  
+				  
+			  }
+		  }
+		
+		
+		 function verEditar(id){
+			  
+			  $.ajax({
+				  method:"GET",
+				  url:"buscarMoradorid",
+			        data:"idmorador="+ id,
+				    success:function(response){
+					$("#id").val(response.id);
+			        $("#bloco").val(response.bloco);
+			        $("#apartamento").val(response.apartamento);
+			        $("#garagem").val(response.garagem);
+			        $("#nome").val(response.nome);
+			        $("#telefone").val(response.telefone);
+			        $("#agua").val(response.agua);		  
+			        $("#energia").val(response.energia);
+			        $("#valorCond").val(response.valorCond);
+			        $("#dataVenc").val(response.dataVenc);
+			        $("#dataPag").val(response.dataPag);
+			        $("#status").val(response.status);
+			        $("#anotacao").val(response.anotacao);
+			        
+			        $('#modalPesquisarMorador').modal('hide')
+				  }
+			  }).fail(function(xhr,status,errorThrown){
+				  alert("Erro ao buscar morador: " + xhr.responseText);
+			  });  
+				  
+			  
+			  
+			  
+		  }
+		 
+		  function deletarInicio(){
+			  var id = $('#id').val();
+			  if(id != null && id.trim()!= ''){		 	 
+			  excluirMorador(id);
+			  document.getElementById('formCadastro').reset();
+			  }
+		  }
+		 
+		 
+		  function excluirMorador(id){
+			  
+				if(confirm('Deseja realmente excluir o morador ?')){  
+			  $.ajax({
+				  
+					  method:"DELETE",
+					  url:"excluir",
+					  data: "idmorador=" + id,
+					  success:function(response){
+						 $('#' + id).remove(); 
+						alert(response);
+				        
+				      
+					  }
+				  }).fail(function(xhr,status,errorThrown){
+					  alert("Erro ao excluir morador: " + xhr.responseText);
+				  });  
+			 
+			    }
+			 
+			  }  
+			      
+		
+	</script>
+</body>
+</html>
